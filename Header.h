@@ -17,7 +17,7 @@ using namespace std;
 
 struct vertex;
 
-struct adjVertex{
+struct adjVertex{// this is just an edge
     vertex *v;
     int weight;
 };
@@ -73,11 +73,6 @@ void Graph::addEdge(string v1, string v2, int weight)
                     av.v = &vertices[j];
                     av.weight = weight;
                     vertices[i].adj.push_back(av);
-                    //another vertex for edge in other direction
-                    //adjVertex av2;
-                    //av2.v = &vertices[i];
-                    //av2.weight = weight;
-                    //vertices[j].adj.push_back(av2);
                 }
             }
         }
@@ -132,59 +127,57 @@ void Graph::displayEdges()
 
 void Graph::buildGraph()
 {
-    //create the graph
-    Graph g;
     //create the vertices
-    g.addVertex("Oakland");
-    g.addVertex("San Francisco");
-    g.addVertex("Palo Alto");
-    g.addVertex("San Jose");
-    g.addVertex("Saratoga");
-    g.addVertex("Los Gatos");
-    g.addVertex("Santa Cruz");
-    g.addVertex("Gilroy");
-    g.addVertex("Monterey");
-    g.addVertex("Salinas");
-    g.addVertex("San Luis Obispo");
-    g.addVertex("Santa Barbara");
-    g.addVertex("Los Angeles");
-    g.addVertex("San Diego");
+    addVertex("Oakland");
+    addVertex("San Francisco");
+    addVertex("Palo Alto");
+    addVertex("San Jose");
+    addVertex("Saratoga");
+    addVertex("Los Gatos");
+    addVertex("Santa Cruz");
+    addVertex("Gilroy");
+    addVertex("Monterey");
+    addVertex("Salinas");
+    addVertex("San Luis Obispo");
+    addVertex("Santa Barbara");
+    addVertex("Los Angeles");
+    addVertex("San Diego");
 
     //create the edges
-    g.addEdge("Oakland", "San Francisco", 15);
-    g.addEdge("San Francisco", "Oakland", 15);
-    g.addEdge("San Francisco", "Palo Alto", 30);
-    g.addEdge("Palo Alto", "San Francisco", 30);
-    g.addEdge("Palo Alto", "San Jose", 20);
-    g.addEdge("San Jose", "Palo Alto", 20);
-    g.addEdge("San Jose", "Saratoga", 13);
-    g.addEdge("Saratoga", "San Jose", 13);
-    g.addEdge("San Jose", "Los Gatos", 12);
-    g.addEdge("Los Gatos", "San Jose", 12);
-    g.addEdge("San Jose", "Gilroy", 35);
-    g.addEdge("Gilroy", "San Jose", 35);
-    g.addEdge("Los Gatos", "Saratoga", 6);
-    g.addEdge("Saratoga", "Los Gatos", 6);
-    g.addEdge("Saratoga", "Santa Cruz", 26);
-    g.addEdge("Santa Cruz", "Saratoga", 26);
-    g.addEdge("Los Gatos", "Santa Cruz", 22);
-    g.addEdge("Santa Cruz", "Los Gatos", 22);
-    g.addEdge("Santa Cruz", "Monterey", 43);
-    g.addEdge("Monterey", "Santa Cruz", 43);
-    g.addEdge("Gilroy", "Salinas", 30);
-    g.addEdge("Salinas", "Gilroy", 30);
-    g.addEdge("Monterey", "Salinas", 20);
-    g.addEdge("Salinas", "Monterey", 20);
-    g.addEdge("Monterey", "San Luis Obispo", 142);
-    g.addEdge("San Luis Obsipo", "Monterey", 142);
-    g.addEdge("Salinas", "San Luis Obispo", 125);
-    g.addEdge("San Luis Obispo", "Salinas", 125);
-    g.addEdge("San Luis Obispo", "Santa Barbara", 94);
-    g.addEdge("Santa Barbara", "San Luis Obispo", 94);
-    g.addEdge("Santa Barbara", "Los Angeles", 96);
-    g.addEdge("Los Angeles", "Santa Barbara", 96);
-    g.addEdge("Los Angeles", "San Diego", 120);
-    g.addEdge("San Diego", "Los Angeles", 120);
+    addEdge("Oakland", "San Francisco", 15);
+    addEdge("San Francisco", "Oakland", 15);
+    addEdge("San Francisco", "Palo Alto", 30);
+    addEdge("Palo Alto", "San Francisco", 30);
+    addEdge("Palo Alto", "San Jose", 20);
+    addEdge("San Jose", "Palo Alto", 20);
+    addEdge("San Jose", "Saratoga", 13);
+    addEdge("Saratoga", "San Jose", 13);
+    addEdge("San Jose", "Los Gatos", 12);
+    addEdge("Los Gatos", "San Jose", 12);
+    addEdge("San Jose", "Gilroy", 35);
+    addEdge("Gilroy", "San Jose", 35);
+    addEdge("Los Gatos", "Saratoga", 6);
+    addEdge("Saratoga", "Los Gatos", 6);
+    addEdge("Saratoga", "Santa Cruz", 26);
+    addEdge("Santa Cruz", "Saratoga", 26);
+    addEdge("Los Gatos", "Santa Cruz", 22);
+    addEdge("Santa Cruz", "Los Gatos", 22);
+    addEdge("Santa Cruz", "Monterey", 43);
+    addEdge("Monterey", "Santa Cruz", 43);
+    addEdge("Gilroy", "Salinas", 30);
+    addEdge("Salinas", "Gilroy", 30);
+    addEdge("Monterey", "Salinas", 20);
+    addEdge("Salinas", "Monterey", 20);
+    addEdge("Monterey", "San Luis Obispo", 142);
+    addEdge("San Luis Obsipo", "Monterey", 142);
+    addEdge("Salinas", "San Luis Obispo", 125);
+    addEdge("San Luis Obispo", "Salinas", 125);
+    addEdge("San Luis Obispo", "Santa Barbara", 94);
+    addEdge("Santa Barbara", "San Luis Obispo", 94);
+    addEdge("Santa Barbara", "Los Angeles", 96);
+    addEdge("Los Angeles", "Santa Barbara", 96);
+    addEdge("Los Angeles", "San Diego", 120);
+    addEdge("San Diego", "Los Angeles", 120);
 }
 
 void Graph::Dijkstra(string starting, string destination)
@@ -298,9 +291,9 @@ vertex * Graph::findVertex(string name)
 {
     for(int i = 0; i < vertices.size(); i++)
     {
-        if(vertice[i].name == name)
+        if(vertices[i].name == name)
         {
-            return &vertices[i];
+            return vertices[i]
         }
     }
     return nullptr;
@@ -308,7 +301,76 @@ vertex * Graph::findVertex(string name)
 
 void Graph::printVertexInformation(string name)
 {
-    vertex = 
+    if(name == "Oakland")//city
+    {
+        cout << "The population of the city oakland is 420,005" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is San Francisco." << endl;
+    }
+    if(name == "San Francisco")// city 2
+    {
+        cout << "The population of the city San Francisco is 864,816" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is Oakland." << endl;
+    }
+    if(name == "Palo Alto")// city 3
+    {
+        cout << "The population of the city Palo Alto is 67,024" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is San Jose." << endl;
+    }
+    if(name == "San Jose")// city 4
+    {
+        cout << "The population of the city San Jose is 1.025 Million" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is Saratoga." << endl;
+    }
+    if(name == "Gilroy")//city 5
+    {
+        cout << "The population of the city Gilroy is 48,821" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is San Jose." << endl;
+    }
+    if(name == "Los Gatos")// city 6
+    {
+        cout << "The population of the city Los Gatos is 30,391" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is Saratoga." << endl;
+    }
+    if(name == "Saratoga")//city 7
+    {
+        cout << "The population of the city Saratoga is 29,926" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is Los Gatos." << endl;
+    }
+    if(name == "Santa Cruz")//city 8
+    {
+        cout << "The population of the city Santa Cruz is 64,465" << endl;
+        cout << "This city is located in Northern California and the next closest city in the graph is Los Gatos." << endl;
+    }
+    if(name == "Salinas")// city 9
+    {
+        cout << "The population of the city Salinas is 157,218" << endl;
+        cout << "This city is located in Central California and the next closest city in the graph is Monterey." << endl;
+    }
+    if(name == "Monterey")// city 10
+    {
+        cout << "The population of the city Monterey is 28,454" << endl;
+        cout << "This city is located in Central California and the next closest city in the graph is Salinas." << endl;
+    }
+    if(name == "San Luis Obispo")// city 11
+    {
+        cout << "The population of the city San Luis Obispo is 47,536" << endl;
+        cout << "This city is located in Southern California and the next closest city in the graph is Monterey." << endl;
+    }
+    if(name == "Santa Barbara")//city 12
+    {
+        cout << "The population of the city Santa Barbara is 91,930" << endl;
+        cout << "This city is located in Southern California and the next closest city in the graph is San Luis Obispo." << endl;
+    }
+    if(name == "Los Angeles")//city 13
+    {
+        cout << "The population of the city Los Angeles is 3.976 Million" << endl;
+        cout << "This city is located in Southern California and the next closest city in the graph is Santa Barbara." << endl;
+    }
+    if(name == "San Diego")// city 14
+    {
+        cout << "The population of the city San Diego is 1.407 Million" << endl;
+        cout << "This city is located in Southern California and the next closest city in the graph is Los Angeles." << endl;
+    }
 }
 
 int Graph::countTotalCities(string name)
@@ -319,6 +381,11 @@ int Graph::countTotalCities(string name)
         counter = counter + 1;
     }
     return counter;
+}
+
+void Graph::deleteAll()
+{
+    //loop through the vector and delete the resources I allocated
 }
 
 

@@ -5,10 +5,6 @@
 //  Created by Steven Karl on 7/23/17.
 //  Copyright © 2017 Steven Karl. All rights reserved.
 //
-///1) in order to call buildGraph in the main function do I need to create an object like weve done before
-///2) For my print vertex information I was basically going to have the user enter a city name and then it would print out like 2 or three facts about the city and then that would be it. How should I write that function should I store the decription in the vertex itself or should I just do it hardcode style
-///3) for the riddles if im going to store the answers in a linked list how should I go about doing that basically I was thinking it would just be 4 answers in a linked list and you would loop through it and say... if the string they input == the key/value of the linked list then they get it correct
-// fix what you can if there is shit thats wrong with my code
 
 #include <iostream>
 #include <string>
@@ -220,7 +216,8 @@ void handleUserInput()
 /////////////////////////////////////////////////////////////////
 int main(int argc, const char * argv[]) {
     
-    //buildGraph();
+    Graph g;
+    g.buildGraph();
     handleUserInput();
 
     return 0;
