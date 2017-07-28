@@ -29,14 +29,14 @@ void displayMenu()
 
 void openingStatement()
 {
-    cout << "Hello and welcome to this program. My name is Steven Karl and this is my final project.This project utilizes a graph to map out a few cities in California. The menu shown below tells you all of the things that you can accomplish with this program. Also this program utilize a doubley linked list in order to store the answer to the minigame that is playable by selecting choice 5 in the main menu. I hope that you enjoy this program and I hope that you have a good rest of your summer. " << endl;
+    cout << "Hello and welcome to this program. My name is Steven Karl and this is my final project.This project utilizes a graph to map out a few cities in California. The menu shown below tells you all of the things that you can accomplish with this program. Also this program utilize a doubley linked list in order to store the answer to the minigame that is playable by selecting choice 5 in the main menu. I hope that you enjoy this program and I hope that you have a good rest of your summer. I would suggest starting by using option # 1 to print out the graph so that you can see wht cities are actually in the Graph. Also Remember to capitalize the first letter of the cities that you type in. " << endl;
 }
 void closingStatement()
 {
     cout << "Thank you for testing this program I had a lot of fun throughout the semester learning about Data Structures. I really wish that I could have had more time to work on this project, but I am happy with what I have created and I hope that you are too. Thanks and have a good summer" << endl;
 }
 
-void handleUserInput(List *charles, Graph g)
+void handleUserInput(List *charles, Graph *g)
 {
     string choice = " ";
     int input;
@@ -52,7 +52,7 @@ void handleUserInput(List *charles, Graph g)
                 
             case 1:{ // This is the case in which the user chooses 1 and wants to display the graphs vertices and connecting edges
                 //just call the display edges function cause why not
-                g.displayEdges();
+                g->displayEdges();
                 break;
             }
                 
@@ -64,7 +64,7 @@ void handleUserInput(List *charles, Graph g)
                 cout << "Enter the city that you wish to move to: " << endl;
                 getline(cin, endCity);
                 //call the Dijkstra function that will tell you the path that you took and how far you traveled
-                g.Dijkstra(currentCity, endCity);
+                g->Dijkstra(currentCity, endCity);
                 break;
             }
                 
@@ -73,14 +73,14 @@ void handleUserInput(List *charles, Graph g)
                 cout << "Enter in the city that you are interested in: " << endl;
                 getline(cin, cityInterestedIn);
                 //call the function that holds city information
-                g.printVertexInformation(cityInterestedIn);
+                g->printVertexInformation(cityInterestedIn);
                 
                 break;
             }
                 
             case 4:{ // This is the case in which the user chooses 4 and wants to count the number of total cities in the graph
                 //call the count vertex fucntion that will traverse the graph and count the number of vertices
-                cout << "The number of total cities represented in the graph are" << g.countTotalCities() << endl;;
+                cout << "The number of total cities represented in the graph are " << g->countTotalCities() << endl;;
                 break;
             }
                 
@@ -116,6 +116,10 @@ void handleUserInput(List *charles, Graph g)
                                     question1 = true;
                                 }
                             }
+                            if(life == false)
+                            {
+                                break;
+                            }
                             bool question2 = false;
                             string answer2 = "";
                             cout << "2nd Question: What is the name of Jon Snow's sword in Game of Thrones?" << endl;
@@ -147,6 +151,10 @@ void handleUserInput(List *charles, Graph g)
                                     }
                                     question2 = true;
                                 }
+                            }
+                            if(life == false)
+                            {
+                                break;
                             }
                             bool question3 = false;
                             string answer3 = "";
@@ -184,6 +192,10 @@ void handleUserInput(List *charles, Graph g)
                                     }
                                     question3 = true;
                                 }
+                            }
+                            if(life == false)
+                            {
+                                break;
                             }
                             bool question4 = false;
                             string answer4 = "";
@@ -259,9 +271,9 @@ void handleUserInput(List *charles, Graph g)
 int main(int argc, const char * argv[]) {
     
     
-    Graph g;
-    g.buildGraph();
-    g.Dijkstra("Oakland", "Saratoga");
+    Graph *g = new Graph;
+    g->buildGraph();
+    //g.Dijkstra("Oakland", "Saratoga");
     List *charles = new List();
     charles -> buildList();
     handleUserInput(charles, g);

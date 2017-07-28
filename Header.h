@@ -62,7 +62,7 @@ Graph::~Graph()
     //dtor
 }
 
-void Graph::addEdge(string v1, string v2, int weight)
+void Graph::addEdge(string v1, string v2, int weight)////////This is the function that is used to add edges connecting the vertices
 {
     for(int i = 0; i < vertices.size(); i++){
         if(vertices[i].name == v1){
@@ -78,7 +78,7 @@ void Graph::addEdge(string v1, string v2, int weight)
     }
 }
 
-void Graph::addVertex(string n)
+void Graph::addVertex(string n)// This adds vertices to the graph based on string city names
 {
     bool found = false;
     for(int i = 0; i < vertices.size(); i++)
@@ -100,7 +100,7 @@ void Graph::addVertex(string n)
     }
 }
 
-void Graph::displayEdges()
+void Graph::displayEdges() //This is the function that is called when print graph is used to show the cities in the graph
 {
     //loop through all vertices and adjacent vertices
     cout << "================================================="<<endl;
@@ -114,7 +114,7 @@ void Graph::displayEdges()
     cout << "================================================="<<endl;
 }
 
-void Graph::buildGraph()
+void Graph::buildGraph()// this is the function that is used to build the graph/add the vertices and edges.
 {
     //create the vertices
     addVertex("Oakland");
@@ -169,7 +169,7 @@ void Graph::buildGraph()
     addEdge("San Diego", "Los Angeles", 120);
 }
 
-void Graph::Dijkstra(string starting, string destination){
+void Graph::Dijkstra(string starting, string destination){// This is the function that is used to find the shortest path between 2 vertices(cities)
     
     vertex * start = nullptr;
     vertex * ending = nullptr;
@@ -252,7 +252,7 @@ void Graph::Dijkstra(string starting, string destination){
             
         }
         cout<<endl;
-        cout<<"Minimum Distance: "<<solved[solved.size()-1]->distance<<endl;
+        cout<<"Minimum Distance: "<<solved[solved.size()-1]->distance << " miles."<<endl;
     }else if (ending!=nullptr){
         cout<<"start not found"<<endl;
         exit(1);
@@ -274,7 +274,7 @@ vertex * Graph::findVertex(string name)
     return nullptr;
 }
 
-void Graph::printVertexInformation(string name)
+void Graph::printVertexInformation(string name) //This is the function that is used to print out the information about each city.
 {
     if(name == "Oakland")//city
     {
@@ -348,7 +348,7 @@ void Graph::printVertexInformation(string name)
     }
 }
 
-int Graph::countTotalCities()
+int Graph::countTotalCities()//This is used to count the total number of cities in the graph at any time.
 {
     int counter = 0;
     for(int i = 0; i < vertices.size(); i++)
@@ -358,7 +358,7 @@ int Graph::countTotalCities()
     return counter;
 }
 
-class List
+class List //This is the list class that is used for setting up the doubly linked list for the riddles
 {
 public:
     List();
@@ -398,7 +398,7 @@ List::~List()
     //dtor
 }
 
-void List::addCity(string newCityName, string previousCityName)
+void List::addCity(string newCityName, string previousCityName)//this is the function that adds a node to a linked list
 {
     node *newCity = new node(newCityName);
     if (head->key == "")
@@ -435,7 +435,7 @@ void List::addCity(string newCityName, string previousCityName)
     }
 }
 
-void List::buildList()
+void List::buildList()//This is the function that is used to build the linked list for the riddles option in the menu
 {
     node linus [5] = {node(""), node("Longclaw") , node("Piano"), node("C137"), node("Clock")};
     for (int i = 0; i < 4; i++)
@@ -451,7 +451,7 @@ void List::buildList()
     }
 }
 
-bool List::searchList(string name)
+bool List::searchList(string name) //This function searches the linked list
 {
     bool foundAnswer = false;
     for(node *i = head; i != nullptr; i = i -> next)
@@ -464,7 +464,7 @@ bool List::searchList(string name)
     return foundAnswer;
 }
 
-void List::deleteAllAnswers()
+void List::deleteAllAnswers()//This deletes all the nodes from the linked list when someone quits the program. 
 {
     for(node *tmp = head; tmp != nullptr; tmp = tmp -> next)
     {
