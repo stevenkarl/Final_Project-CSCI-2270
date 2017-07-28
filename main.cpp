@@ -18,8 +18,8 @@ using namespace std;
 void displayMenu()
 {
     cout << "======Main Menu======" << endl;
-    cout << "1. Print the Graph" << endl;
-    cout << "2. Move to a new city" << endl;
+    cout << "1. Print the Graph: This shows you what cities a certain city is directly connected with" << endl;
+    cout << "2. Move to a new city: This tells you the shortest path between the cities you wish to move between" << endl;
     cout << "3. Find out information about a city" << endl;
     cout << "4. Count the number of cities in the graph" << endl;
     cout << "5. Play a minigame: If your bored of the graph and want a little challenge" << endl;
@@ -29,14 +29,14 @@ void displayMenu()
 
 void openingStatement()
 {
-    cout << "" << endl;
+    cout << "Hello and welcome to this program. My name is Steven Karl and this is my final project.This project utilizes a graph to map out a few cities in California. The menu shown below tells you all of the things that you can accomplish with this program. Also this program utilize a doubley linked list in order to store the answer to the minigame that is playable by selecting choice 5 in the main menu. I hope that you enjoy this program and I hope that you have a good rest of your summer. " << endl;
 }
 void closingStatement()
 {
-    cout << "" << endl;
+    cout << "Thank you for testing this program I had a lot of fun throughout the semester learning about Data Structures. I really wish that I could have had more time to work on this project, but I am happy with what I have created and I hope that you are too. Thanks and have a good summer" << endl;
 }
 
-void handleUserInput()
+void handleUserInput(List *charles, Graph g)
 {
     string choice = " ";
     int input;
@@ -45,6 +45,7 @@ void handleUserInput()
         openingStatement();
         cout << "" << endl;
         displayMenu();
+        cout << "" << endl;
         getline(cin, choice);
         input = stoi(choice);
         switch(input){
@@ -237,7 +238,7 @@ int main(int argc, const char * argv[]) {
     g.buildGraph();
     List *charles = new List();
     charles -> buildList();
-    handleUserInput();
+    handleUserInput(charles, g);
 
     return 0;
 }

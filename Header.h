@@ -105,24 +105,14 @@ void Graph::displayEdges()
 {
     //loop through all vertices and adjacent vertices
     cout << "================================================="<<endl;
-    for(int i = 0; i < vertices.size(); i++)
-    {
-        cout << vertices[i].name << "-->" << endl;
-        for(int j = 0; j < vertices.size();j++)
-        {
-            cout << vertices[i].adj[j].v -> name;
-            cout << " (distance: "<< vertices[i].adj[j].v -> distance << " , visited: "<<vertices[i].adj[j].v -> visited <<" , parent: ";
-            if(vertices[i].adj[j].v->previous == nullptr)
-            {
-                cout << " nullptr)"<< endl;
-            }
-            else
-            {
-                cout << vertices[i].adj[j].v -> previous -> name << ")"<<endl;
-            }
+    for(int i = 0; i < vertices.size(); i++){
+        cout<<vertices[i].name<<"-->";
+        for(int j = 0; j < vertices[i].adj.size(); j++){
+            cout<<vertices[i].adj[j].v->name<<"-->";
         }
-        cout << "================================================="<<endl;
+        cout<<endl;
     }
+    cout << "================================================="<<endl;
 }
 
 void Graph::buildGraph()
@@ -406,6 +396,12 @@ private:
         string key;
         node *next;
         node *previous;
+        node(string cn)
+        {
+            key = cn;
+            next = nullptr;
+            previous = nullptr;
+        }
     };
     node *head;
     node *tail;
@@ -414,7 +410,8 @@ private:
 
 List::List()
 {
-    
+    head = new node("");
+    tail = new node("");
 }
 
 List::~List()
@@ -424,8 +421,7 @@ List::~List()
 
 void List::addCity(string newCityName, string previousCityName)
 {
-    node *newCity = new node(newCityName, nullptr);
-    
+    node *newCity = new node(newCityName);
     if (head->key == "")
     {
         head =  newCity;
@@ -462,8 +458,8 @@ void List::addCity(string newCityName, string previousCityName)
 
 void List::buildList()
 {
-    node linus [4] = {node(""), node("Longclaw") , node("Piano"), node("C137"), node("Clock")};
-    for (int i = 0; i < 3; i++)
+    node linus [5] = {node(""), node("Longclaw") , node("Piano"), node("C137"), node("Clock")};
+    for (int i = 0; i < 4; i++)
     {
         addCity(linus[i+1].key, linus[i].key);
     }
