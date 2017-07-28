@@ -41,10 +41,9 @@ public:
     void buildGraph();
     void Dijkstra(string sourceVertex, string destinationVertex);
     //void breadthFirstSearch(string startingCity, string searchName);
-    //vertex * findVertex(string name);
+    vertex * findVertex(string name);
     void printVertexInformation(string name);
     int countTotalCities();
-    void deleteAll();
     
 protected:
 private:
@@ -170,16 +169,16 @@ void Graph::buildGraph()
     addEdge("San Diego", "Los Angeles", 120);
 }
 
-void Graph::Dijkstra(string starting, string destination)
-{
+void Graph::Dijkstra(string starting, string destination){
+    
     vertex * start = nullptr;
     vertex * ending = nullptr;
-    //search to find starting and destination
+    //search routine to find starting and destination
     for (int i = 0; i < vertices.size(); i++) {
         vertices[i].visited = false;
         vertices[i].distance = INT_MAX;
         vertices[i].previous = nullptr;
-        if (vertices[i].name == starting){
+        if (vertices[i].name == starting) {
             start = &vertices[i];
         }
         if (vertices[i].name == destination) {
@@ -190,33 +189,54 @@ void Graph::Dijkstra(string starting, string destination)
     {
         start->visited = true;
         start->distance = 0;
+        cout<<"pushing "<<start->name<<" into solved"<<endl;
         vector<vertex *> solved;
         vector<vertex *> path;
         solved.push_back(start);
+        //path.push_back(start);
         adjVertex * v;
         vertex * u;
-        vertex * minVertex;
-        vertex * prev;
+        vertex * minVertex = nullptr;
+        vertex * prev = nullptr;
         while (ending->visited == false) {
             int minDistance = INT_MAX;
             for (int i = 0; i < solved.size(); i++) {
                 u = solved[i];
+                cout<<endl;
+                cout<<"Inspecting route from "<<u->name<<endl;
                 for (int j = 0; j < u->adj.size(); j++) {
                     v = &solved[i]->adj[j];
+                    cout<<"-> to "<<v->v->name;
                     if (v->v->visited == false) {
+                        cout<<", not yet solved,";
                         int dist = u->distance + v->weight;
                         if (dist < minDistance) {
+                            cout<<" the minimum distance was "<<minDistance;
                             minDistance = dist;
                             minVertex = v->v;
                             prev = u;
-                        }
+                            cout<<" but there is a new minimum distance of "<<dist<<" between "
+                            <<start->name <<" and "<<minVertex->name<<endl;
+                        }else{cout<<" the minimum distance is "<<minDistance
+                            <<" and there is not a new minimum distance "<<dist<<endl;}
+                    }else{
+                        cout<<" already solved, moving on"<<endl;
                     }
                 }
+                
             }
             solved.push_back(minVertex);
+            cout<<endl;
+            cout<<"pushing "<<minVertex->name<<" into solved ";
             minVertex->distance = minDistance;
             minVertex->previous = prev;
             minVertex->visited = true;
+            cout<<minVertex->name;
+            cout<<"(distance: "<<minVertex->distance
+            <<", visited: "<<minVertex->visited
+            <<", parent: "<<minVertex->previous->name<<")"<<endl;
+            cout<<"destination "<<ending->name<<" solved? "<<ending->visited<<endl;
+            cout<<endl;
         }
         cout<<"Shortest Path"<<endl;
         vertex * vert = ending;
@@ -232,63 +252,27 @@ void Graph::Dijkstra(string starting, string destination)
             
         }
         cout<<endl;
-        cout<<"Minimum Distance: " <<solved[solved.size()-1]->distance<<endl;
-    }
-    else if (ending!=nullptr)
-    {
+        cout<<"Minimum Distance: "<<solved[solved.size()-1]->distance<<endl;
+    }else if (ending!=nullptr){
+        cout<<"start not found"<<endl;
         exit(1);
-    }
-    else{
+    }else{
+        cout<<"ending not found"<<endl;
         exit(1);
     }
 }
 
-/*void Graph::breadthFirstSearch(string startingCity, string searchName)
-{
-    Q<vertex*>queue;
-    //label everything as not visited
-    for(int i = 0; i < vertices.size(); i++)
-    {
-        vertices[i].visited = false;
-    }
-    vertex = findVertex(startingCity);
-    vertex.visited = true;
-    vertex.distance = 0;
-    queue.enqueue(vertex);
-    while(!queue.isEmpty)
-    {
-        n = queue.dequeue();
-        for(int i = 0; i < n.adjacent.end(); i++)
-        {
-            if(!n.adjacent.visited)
-            {
-                n.adjacnet[i].v.distance = n.distance + 1;
-                if(n.adjacent[i].v.key == searchName)
-                {
-                    return n.adjacent[i].v;
-                }
-                else
-                {
-                    n.adjacent[i].v.visited == true;
-                    queue.enqueue(n.adjacent[i].v);
-                }
-            }
-        }
-    }
-    return nullptr;
-}*/
-
-/*vertex * Graph::findVertex(string name)
+vertex * Graph::findVertex(string name)
 {
     for(int i = 0; i < vertices.size(); i++)
     {
         if(vertices[i].name == name)
         {
-            return vertices[i]
+            return &vertices[i];
         }
     }
     return nullptr;
-}*/
+}
 
 void Graph::printVertexInformation(string name)
 {
@@ -372,11 +356,6 @@ int Graph::countTotalCities()
         counter = counter + 1;
     }
     return counter;
-}
-
-void Graph::deleteAll()
-{
-    //loop through the vector and delete the resources I allocated
 }
 
 class List
@@ -489,8 +468,8 @@ void List::deleteAllAnswers()
 {
     for(node *tmp = head; tmp != nullptr; tmp = tmp -> next)
     {
-        delete[] tmp;
-        cout<< "deleting "<< tmp->key << endl; //for all nodes in network
+        delete tmp;
+        cout<< "deleting node" << endl; //for all nodes in network
     }
 
 }

@@ -41,8 +41,8 @@ void handleUserInput(List *charles, Graph g)
     string choice = " ";
     int input;
     bool quit = false;
+    openingStatement();
     while(quit == false){
-        openingStatement();
         cout << "" << endl;
         displayMenu();
         cout << "" << endl;
@@ -80,45 +80,55 @@ void handleUserInput(List *charles, Graph g)
                 
             case 4:{ // This is the case in which the user chooses 4 and wants to count the number of total cities in the graph
                 //call the count vertex fucntion that will traverse the graph and count the number of vertices
-                g.countTotalCities(); 
+                cout << "The number of total cities represented in the graph are" << g.countTotalCities() << endl;;
                 break;
             }
                 
             case 5:{ // This is the case in which the user chooses 5 and is bored with the map and wants to play a mini game
+                cout << endl;
                 cout << "Welcome to the mini games section of this program, Get ready for some fun" << endl;
-                cout << "Random Riddles and trivia" << endl;
+                cout << endl;
+                cout << "Below are a few Random Riddles and trivia I hope you enjoy them" << endl;
                         int lives = 2;
                         bool life = true;
-                        while(life != false){
+                        while(life == true){
                             string answer = "";
                             bool question1 = false;
-                            cout << "Welcome to the Riddles section of the minigames, you begin this game with 2 lives and you lose a life for every question you miss" << endl;
+                            cout << "You begin this section with 2 lives and you lose a life for every question you miss. All Riddles are one word answers" << endl;
+                            cout << endl;
                             cout << "1st Question: What has hands but cannot clap?" << endl;
-                            cout << "Enter your answer here: " << endl;
+                            cout << endl;
+                            cout << "Enter your answer here (Capitalize the first letter): " << endl;
+                            cout << endl;
                             getline(cin, answer);
                             while(question1 == false){
-                                if(answer == "Clock" || answer == "clock")
+                                if(charles->searchList(answer))
                                 {
                                     cout << "Way to go you got the easiet one correct. Get ready it only gets harder from here" << endl;
+                                    cout << endl;
                                     question1 = true;
                                 }
                                 else
                                 {
                                     lives--;
                                     cout << "Good try, but sadly you lost 1 life. You now only have 1 left, and it only gets harder from here." << endl;
+                                    cout << endl;
                                     question1 = true;
                                 }
                             }
                             bool question2 = false;
                             string answer2 = "";
                             cout << "2nd Question: What is the name of Jon Snow's sword in Game of Thrones?" << endl;
-                            cout << "Enter your answer here: " << endl;
+                            cout << endl;
+                            cout << "Enter your answer here (Capitalize the first letter): " << endl;
+                            cout << endl;
                             getline(cin, answer2);
                             while(question2 == false)
                             {
-                                if(answer2 == "Longclaw" || answer2 == "longclaw")
+                                if(charles->searchList(answer2))
                                 {
                                     cout << "Well done you actually are impressing me...a little." << endl;
+                                    cout << endl;
                                     question2 = true;
                                 }
                                 else
@@ -127,12 +137,13 @@ void handleUserInput(List *charles, Graph g)
                                     if(lives == 0)
                                     {
                                         cout << "It looks like you got another one wrong too bad better luck next time" << endl;
+                                        cout << endl;
                                         life = false;
-                                    
                                     }
                                     else
                                     {
                                         cout << "Good try, sadly you lost a life you only have 1 life left" << endl;
+                                        cout << endl;
                                     }
                                     question2 = true;
                                 }
@@ -140,13 +151,16 @@ void handleUserInput(List *charles, Graph g)
                             bool question3 = false;
                             string answer3 = "";
                             cout << "3rd Question: What has many keys but can't even open a single door?" << endl;
-                            cout << "Enter your answer here: " << endl;
+                            cout << endl;
+                            cout << "Enter your answer here (Capitalize the first letter): " << endl;
+                            cout << endl;
                             getline(cin, answer3);
                             while(question3 == false)
                             {
-                                if(answer3 == "Piano" || answer3 == "piano")
+                                if(charles->searchList(answer3))
                                 {
                                     cout << "You've done well so far but can you get this last one" << endl;
+                                    cout << endl;
                                     question3 = true;
                                 }
                                 else
@@ -155,15 +169,18 @@ void handleUserInput(List *charles, Graph g)
                                     if(lives == 0)
                                     {
                                         cout << "It looks like you got another one wrong too bad better luck next time" << endl;
+                                        cout << endl;
                                         life = false;
                                     }
                                     else if(lives == 1)
                                     {
                                         cout << "Good luck your gonna need it for the next one" << endl;
+                                        cout << endl;
                                     }
                                     else
                                     {
                                         cout << "Amazing you might actually make it to the end" << endl;
+                                        cout << endl;
                                     }
                                     question3 = true;
                                 }
@@ -171,13 +188,16 @@ void handleUserInput(List *charles, Graph g)
                             bool question4 = false;
                             string answer4 = "";
                             cout << "4th Question: In the TV Show Rick and Morty what dimension is the main Rick and Morty from?" << endl;
-                            cout << "Enter your answer here(no (-) please: " << endl;
+                            cout << endl;
+                            cout << "Enter your answer here (Capitalize the first letter) and no (-) needed: " << endl;
+                            cout << endl;
                             getline(cin, answer4);
                             while(question4 == false)
                             {
-                                if(answer4 == "C137" || answer4 == "c137")
+                                if(charles->searchList(answer4))
                                 {
                                     cout << "Amazing you made it to the end congratulations" << endl;
+                                    cout << endl;
                                     question4 = true;
                                 }
                                 else
@@ -186,15 +206,18 @@ void handleUserInput(List *charles, Graph g)
                                     if(lives == 0)
                                     {
                                         cout << "You were so close I'm sorry better luck next time" << endl;
+                                        cout << endl;
                                         life = false;
                                     }
                                     else if(lives == 1)
                                     {
                                         cout << "You barely made it you won't be so lucky next time" << endl;
+                                        cout << endl;
                                     }
                                     else
                                     {
                                         cout << "Amazing you made it to the end congratulations" << endl;
+                                        cout << endl;
                                     }
                                     question4 = true;
                                 }
@@ -207,21 +230,23 @@ void handleUserInput(List *charles, Graph g)
             case 6:{//This is the option that will be used if the user want to leave a suggestion
                 string suggestion = "";
                 cout << "Please enter a suggestion to make this program better: " << endl;
+                cout << endl;
                 getline(cin, suggestion);
                 if(suggestion != "")
                 {
-                    cout << "Thank you for your suggestion" << endl;
+                    cout << "Thank you for your suggestion, but honestly your opinion..." << endl;
+                    cout << endl;
                 }
                 else
                 {
                     cout << "Please leave a suggestion next time, that was just rude" << endl;
+                    cout << endl;
                 }
                 break;
             }
                 
             case 7:{ // This is the case in which the user chooses 6 and wishes to quit the program
                 quit = true;
-                g.deleteAll();
                 charles -> deleteAllAnswers();
                 cout << "" << endl;
                 closingStatement();
@@ -236,6 +261,7 @@ int main(int argc, const char * argv[]) {
     
     Graph g;
     g.buildGraph();
+    g.Dijkstra("Oakland", "Saratoga");
     List *charles = new List();
     charles -> buildList();
     handleUserInput(charles, g);
