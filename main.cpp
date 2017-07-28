@@ -27,12 +27,23 @@ void displayMenu()
     cout << "7. Quit the program: If you can't win a mini game" << endl;
 }
 
+void openingStatement()
+{
+    cout << "" << endl;
+}
+void closingStatement()
+{
+    cout << "" << endl;
+}
+
 void handleUserInput()
 {
     string choice = " ";
     int input;
     bool quit = false;
     while(quit == false){
+        openingStatement();
+        cout << "" << endl;
         displayMenu();
         getline(cin, choice);
         input = stoi(choice);
@@ -40,6 +51,7 @@ void handleUserInput()
                 
             case 1:{ // This is the case in which the user chooses 1 and wants to display the graphs vertices and connecting edges
                 //just call the display edges function cause why not
+                g.displayEdges();
                 break;
             }
                 
@@ -51,6 +63,7 @@ void handleUserInput()
                 cout << "Enter the city that you wish to move to: " << endl;
                 getline(cin, endCity);
                 //call the Dijkstra function that will tell you the path that you took and how far you traveled
+                g.Dijkstra(currentCity, endCity);
                 break;
             }
                 
@@ -59,12 +72,14 @@ void handleUserInput()
                 cout << "Enter in the city that you are interested in: " << endl;
                 getline(cin, cityInterestedIn);
                 //call the function that holds city information
+                g.printVertexInformation(cityInterestedIn);
                 
                 break;
             }
                 
             case 4:{ // This is the case in which the user chooses 4 and wants to count the number of total cities in the graph
                 //call the count vertex fucntion that will traverse the graph and count the number of vertices
+                g.countTotalCities(); 
                 break;
             }
                 
@@ -205,9 +220,10 @@ void handleUserInput()
                 
             case 7:{ // This is the case in which the user chooses 6 and wishes to quit the program
                 quit = true;
-                cout << "Thank you for trying out this program" << endl;
-                // call the deleteAll function to delete the graph
-                
+                g.deleteAll();
+                charles -> deleteAllAnswers();
+                cout << "" << endl;
+                closingStatement();
                 break;
             }
         }
@@ -216,8 +232,11 @@ void handleUserInput()
 /////////////////////////////////////////////////////////////////
 int main(int argc, const char * argv[]) {
     
+    
     Graph g;
     g.buildGraph();
+    List *charles = new List();
+    charles -> buildList();
     handleUserInput();
 
     return 0;

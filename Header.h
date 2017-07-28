@@ -40,11 +40,11 @@ public:
     void displayEdges();
     void buildGraph();
     void Dijkstra(string sourceVertex, string destinationVertex);
-    void breadthFirstSearch(string startingCity, string searchName);
-    vertex * findVertex(string name);
+    //void breadthFirstSearch(string startingCity, string searchName);
+    //vertex * findVertex(string name);
     void printVertexInformation(string name);
-    void countTotalCities(string name);
-    void deleteAllCities(string name);
+    int countTotalCities();
+    void deleteAll();
     
 protected:
 private:
@@ -253,8 +253,9 @@ void Graph::Dijkstra(string starting, string destination)
     }
 }
 
-void Graph::breadthFirstSearch(string startingCity, string searchName)
+/*void Graph::breadthFirstSearch(string startingCity, string searchName)
 {
+    Q<vertex*>queue;
     //label everything as not visited
     for(int i = 0; i < vertices.size(); i++)
     {
@@ -285,9 +286,9 @@ void Graph::breadthFirstSearch(string startingCity, string searchName)
         }
     }
     return nullptr;
-}
+}*/
 
-vertex * Graph::findVertex(string name)
+/*vertex * Graph::findVertex(string name)
 {
     for(int i = 0; i < vertices.size(); i++)
     {
@@ -297,83 +298,83 @@ vertex * Graph::findVertex(string name)
         }
     }
     return nullptr;
-}
+}*/
 
 void Graph::printVertexInformation(string name)
 {
     if(name == "Oakland")//city
     {
-        cout << "The population of the city oakland is 420,005" << endl;
+        cout << "The population of the city oakland is 420,005." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is San Francisco." << endl;
     }
     if(name == "San Francisco")// city 2
     {
-        cout << "The population of the city San Francisco is 864,816" << endl;
+        cout << "The population of the city San Francisco is 864,816." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is Oakland." << endl;
     }
     if(name == "Palo Alto")// city 3
     {
-        cout << "The population of the city Palo Alto is 67,024" << endl;
+        cout << "The population of the city Palo Alto is 67,024." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is San Jose." << endl;
     }
     if(name == "San Jose")// city 4
     {
-        cout << "The population of the city San Jose is 1.025 Million" << endl;
+        cout << "The population of the city San Jose is 1.025 Million." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is Saratoga." << endl;
     }
     if(name == "Gilroy")//city 5
     {
-        cout << "The population of the city Gilroy is 48,821" << endl;
+        cout << "The population of the city Gilroy is 48,821." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is San Jose." << endl;
     }
     if(name == "Los Gatos")// city 6
     {
-        cout << "The population of the city Los Gatos is 30,391" << endl;
+        cout << "The population of the city Los Gatos is 30,391." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is Saratoga." << endl;
     }
     if(name == "Saratoga")//city 7
     {
-        cout << "The population of the city Saratoga is 29,926" << endl;
+        cout << "The population of the city Saratoga is 29,926." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is Los Gatos." << endl;
     }
     if(name == "Santa Cruz")//city 8
     {
-        cout << "The population of the city Santa Cruz is 64,465" << endl;
+        cout << "The population of the city Santa Cruz is 64,465." << endl;
         cout << "This city is located in Northern California and the next closest city in the graph is Los Gatos." << endl;
     }
     if(name == "Salinas")// city 9
     {
-        cout << "The population of the city Salinas is 157,218" << endl;
+        cout << "The population of the city Salinas is 157,218." << endl;
         cout << "This city is located in Central California and the next closest city in the graph is Monterey." << endl;
     }
     if(name == "Monterey")// city 10
     {
-        cout << "The population of the city Monterey is 28,454" << endl;
+        cout << "The population of the city Monterey is 28,454." << endl;
         cout << "This city is located in Central California and the next closest city in the graph is Salinas." << endl;
     }
     if(name == "San Luis Obispo")// city 11
     {
-        cout << "The population of the city San Luis Obispo is 47,536" << endl;
+        cout << "The population of the city San Luis Obispo is 47,536." << endl;
         cout << "This city is located in Southern California and the next closest city in the graph is Monterey." << endl;
     }
     if(name == "Santa Barbara")//city 12
     {
-        cout << "The population of the city Santa Barbara is 91,930" << endl;
+        cout << "The population of the city Santa Barbara is 91,930." << endl;
         cout << "This city is located in Southern California and the next closest city in the graph is San Luis Obispo." << endl;
     }
     if(name == "Los Angeles")//city 13
     {
-        cout << "The population of the city Los Angeles is 3.976 Million" << endl;
+        cout << "The population of the city Los Angeles is 3.976 Million." << endl;
         cout << "This city is located in Southern California and the next closest city in the graph is Santa Barbara." << endl;
     }
     if(name == "San Diego")// city 14
     {
-        cout << "The population of the city San Diego is 1.407 Million" << endl;
+        cout << "The population of the city San Diego is 1.407 Million." << endl;
         cout << "This city is located in Southern California and the next closest city in the graph is Los Angeles." << endl;
     }
 }
 
-int Graph::countTotalCities(string name)
+int Graph::countTotalCities()
 {
     int counter = 0;
     for(int i = 0; i < vertices.size(); i++)
@@ -388,7 +389,115 @@ void Graph::deleteAll()
     //loop through the vector and delete the resources I allocated
 }
 
+class List
+{
+public:
+    List();
+    ~List();
+    void addCity(string newCityName, string previousCityName);
+    void buildList();
+    bool searchList(string name);
+    void deleteAllAnswers();
 
+protected:
+private:
+    struct node
+    {
+        string key;
+        node *next;
+        node *previous;
+    };
+    node *head;
+    node *tail;
+    
+};
+
+List::List()
+{
+    
+}
+
+List::~List()
+{
+    //dtor
+}
+
+void List::addCity(string newCityName, string previousCityName)
+{
+    node *newCity = new node(newCityName, nullptr);
+    
+    if (head->key == "")
+    {
+        head =  newCity;
+        return;
+    }
+    if (previousCityName == "First")
+    {//Case # 1 if they want to put the new city in front
+        node *temp = head;
+        head = newCity;
+        
+        newCity -> next = temp;
+        head -> next = newCity -> next;
+    }
+    for (node *i = head; i != NULL; i = i -> next)
+    {
+        if (i-> key == previousCityName)
+        {
+            if (i->next == NULL)
+            {//Case #2 if they want to put the new city at the end;
+                i -> next = newCity;
+                newCity -> previous = i;
+            }
+            else
+            {                           //Case # 3 if they want to put the new city in the middle
+                node *temp = i -> next;
+                i -> next = newCity;
+                newCity ->next = temp;
+                newCity -> previous = i;
+                temp -> previous = newCity;
+            }
+        }
+    }
+}
+
+void List::buildList()
+{
+    node linus [4] = {node(""), node("Longclaw") , node("Piano"), node("C137"), node("Clock")};
+    for (int i = 0; i < 3; i++)
+    {
+        addCity(linus[i+1].key, linus[i].key);
+    }
+    for (node *i = head; i != NULL; i = i->next)
+    {
+        if (i->next == NULL)
+        {
+            tail = i;
+        }
+    }
+}
+
+bool List::searchList(string name)
+{
+    bool foundAnswer = false;
+    for(node *i = head; i != nullptr; i = i -> next)
+    {
+        if(i->key == name)
+        {
+            foundAnswer = true;
+        }
+    }
+    return foundAnswer;
+}
+
+void List::deleteAllAnswers()
+{
+    for(node *tmp = head; tmp != nullptr; tmp = tmp -> next)
+    {
+        delete[] tmp;
+        cout<< "deleting "<< tmp->key << endl; //for all nodes in network
+    }
+
+}
 
 
 #endif /* Header_h */
