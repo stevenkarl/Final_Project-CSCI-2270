@@ -4,7 +4,7 @@ CSCI 2270 Final Project - Steven Karl
 Phase 2: ReadMe File 
 
 Project Summary: 
-  For final project I utilized a graph to create map of 14 different cities in California where I grew up. It is a weighted graph so the distances between each city is taken into account. When the program opens there will be a main menu that contain these different functionalities: 
+  For my final project I utilized a graph to create map of 14 different cities in California where I grew up. It is a weighted graph so the distances between each city is taken into account. When the program opens there will be a main menu that contain these different functionalities: 
     cout << "======Main Menu======" << endl;
     cout << "1. Print the Graph: This shows you what cities a certain city is directly connected with" << endl;
     cout << "2. Move to a new city: This tells you the shortest path between the cities you wish to move between" << endl;
@@ -30,7 +30,7 @@ Project Summary:
     Santa Barbara,
     Los Angeles,
     San Diego,
-
+   
 
 How to Run: 
   When my program opens there will be an introduction that will tell you about the program and the features that it has. From that point you will see a "Main Menu" similar to what we used for a lot of our assignments. The main menu is fairly descriptive and by following it you should be able to test all of the functions that are present. Each menu option will prompt you for what you need to enter next to test the function. The only thing that I think is important to mention is that you should probably utilize menu option # 1 first: Print the Graph. This is because it will tell you what cities are in the graph which is important for testing the other functionalities. 
@@ -52,7 +52,8 @@ My Name:
 Open Issues/Bugs: 
   At this point I have tested my code numerous times and I have solved all the bugs that I found. I have run it many times since and I haven't found any more up to this point. I don't think that there are any bugs at this point that I know of.
 
-
+Specifications: 
+  The main file and the header file are in this repository for your access. 
 
 
 Phase 1: 
