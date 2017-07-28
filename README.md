@@ -16,20 +16,20 @@ Project Summary:
  I would recommend starting off by printing out the graph because that will give you a list of the cities that exisit in the graph which you will need to know for the other menu options. The next option chioce 2, this functionality allows you to find the shortest path between any two cities in the graph. Choice 3 is an option that allows you to input a city name and then you will be told information about the specific city that you were interested in. Choice 4 is an option that will count the total number of cities(vertices)that are present in the graph. Choice 5 is an option that takes you away from the graph functionalities and allows you to play a minigame which is a series of riddles and trivia that you need to answer. For this minigame section I utilized a doubly linked list to store the data for the riddles. Lastly, there are choice 6 and choice 7; in choice 6 you can leave a suggestion to make the program better and in choice 7 you can exit the program if you are done testing the functionalities. My program is split into my main.cpp file and my Header.h file. The main file is where I handle the users inputs and the header file is where all of my functions are written and my graph class and list class are defined. 
  
  The Cities that are in my graph: 
-    Oakland
-    San Francisco
-    Palo Alto
-    San Jose
-    Saratoga
-    Los Gatos
-    Santa Cruz
-    Gilroy
-    Monterey
-    Salinas
-    San Luis Obispo
-    Santa Barbara
-    Los Angeles
-    San Diego
+    Oakland,
+    San Francisco,
+    Palo Alto,
+    San Jose,
+    Saratoga,
+    Los Gatos,
+    Santa Cruz,
+    Gilroy,
+    Monterey,
+    Salinas,
+    San Luis Obispo,
+    Santa Barbara,
+    Los Angeles,
+    San Diego,
 
 
 How to Run: 
